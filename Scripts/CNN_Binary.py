@@ -5,9 +5,9 @@ from pyrsgis import raster
 from pyrsgis.ml import imageChipsFromArray
 
 # Defining file names
-feature_file = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/Playa_Image.tif'
-label_file_playa = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/Playa_Training.tif'
-label_file_nonPlaya = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/NonPlaya_Training.tif'
+feature_file = 'Playa_Image.tif'
+label_file_playa = 'Playa_Training.tif'
+label_file_nonPlaya = 'NonPlaya_Training.tif'
 
 # Reading and normalizing input data
 dsFeatures, arrFeatures = raster.read(feature_file, bands='all')
@@ -105,7 +105,7 @@ print("Confusion matrix:\n", cMatrix)
 print("\nP-Score: %.3f, R-Score: %.3f, F-Score: %.3f" % (pScore, rScore, fscore))
 
 # Loading and normalizing a new multispectral image
-dsPre, featuresPre = raster.read('D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/Playa_Image.tif', bands='all')
+dsPre, featuresPre = raster.read('Playa_Image.tif', bands='all')
 featuresPre = featuresPre.astype(float)
 
 for i in range(featuresPre.shape[0]):
@@ -125,5 +125,5 @@ newPredicted = newPredicted[:,1]
 
 prediction = np.reshape(newPredicted, (dsPre.RasterYSize, dsPre.RasterXSize))
 
-outFile = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/Playa_Predicted_CNN.tif'
+outFile = 'Playa_Predicted_CNN.tif'
 raster.export(prediction, dsPre, filename=outFile, dtype='float')
