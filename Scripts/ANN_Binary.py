@@ -1,9 +1,9 @@
 import numpy as np
 from pyrsgis import raster
 
-Playa_Image = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/Playa_Image.tif'
-Playa_Training = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/Playa_Training.tif'
-NonPlaya_Training = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/NonPlaya_Training.tif'
+Playa_Image = 'Playa_Image.tif'
+Playa_Training = 'Playa_Training.tif'
+NonPlaya_Training = 'NonPlaya_Training.tif'
 
 # Reading rasters as arrays
 dsImage, arrImage = raster.read(Playa_Image, bands='all')
@@ -90,5 +90,5 @@ predicted = predicted[:,1]
 
 # Exporting the raster file
 prediction = np.reshape(predicted, (dsImage.RasterYSize, dsImage.RasterXSize))
-outFile = 'D:/Publications/ISI Journals/2021o - CNN with Rohit/Python/Playa_Predicted_ANN.tif'
+outFile = 'Playa_Predicted_ANN.tif'
 raster.export(prediction, dsImage, filename=outFile, dtype='float')
