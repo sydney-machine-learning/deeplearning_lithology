@@ -5,8 +5,8 @@ from pyrsgis import raster
 from pyrsgis.ml import imageChipsFromArray
 
 # Defining file names
-featureFile = 'D:/Publications/ISI Journals/2021e - Writing with Hojat/Python/Sistan_Sentinel.tif'
-labelFile = 'D:/Publications/ISI Journals/2021e - Writing with Hojat/Python/Sistan_Sentinel_Training.tif'
+featureFile = 'Sistan_ASTER.tif'
+labelFile = 'Sistan_ASTER_Training.tif'
 
 # Reading and normalizing input data
 dsFeatures, arrFeatures = raster.read(featureFile, bands='all')
@@ -82,7 +82,7 @@ print("Confusion matrix:\n", cMatrix)
 print("\nP-Score: %.3f, R-Score: %.3f, F-Score: %.3f" % (pScore, rScore, fscore))
 
 # Loading and normalizing a new multispectral image
-dsPre, featuresPre = raster.read('D:/Publications/ISI Journals/2021e - Writing with Hojat/Python/Sistan_Sentinel.tif')
+dsPre, featuresPre = raster.read('Sistan_ASTER.tif')
 featuresPre = featuresPre.astype(float)
 
 for i in range(featuresPre.shape[0]):
@@ -101,7 +101,7 @@ newPredicted = model.predict(new_features)
 
 prediction = np.reshape(newPredicted.argmax(axis=1), (dsPre.RasterYSize, dsPre.RasterXSize))
 
-outFile = 'D:/Publications/ISI Journals/2021e - Writing with Hojat/Python/Sistan_Lithology_CNN.tif'
+outFile = 'Sistan_Lithology_CNN.tif'
 raster.export(prediction, dsPre, filename=outFile, dtype='float')
 
 # ROC curve
